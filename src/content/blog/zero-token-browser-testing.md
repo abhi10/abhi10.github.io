@@ -145,6 +145,10 @@ const hasEmptyState = html.includes('No images yet')
 - One-off debugging sessions
 - You need AI reasoning about results
 
+## View the Code
+
+See the full implementation in my open-source project: [**chitram/browser-tests**](https://github.com/abhi10/chitram/tree/main/browser-tests)
+
 ## Credits
 
 This approach is based on [Daniel Miessler's kai-browser-skill](https://github.com/danielmiessler/Personal_AI_Infrastructure/tree/main/Packs/kai-browser-skill) from his excellent Personal AI Infrastructure project. The core insight — that file-based code execution beats token-heavy MCPs — comes from [Anthropic's engineering blog](https://www.anthropic.com/engineering/code-execution-with-mcp).

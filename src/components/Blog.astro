@@ -1,0 +1,126 @@
+---
+import { getCollection } from "astro:content";
+import { siteConfig } from "../config";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const hasPosts = posts && posts.length > 0;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+{
+  hasPosts && (
+    <section id="blog" class="p-8 sm:p-12 md:p-16 lg:p-24">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+              Blog
+            </h2>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
+            <p class="mt-4 text-gray-600">
+              Thoughts on testing, automation, and software quality.
+            </p>
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="space-y-6">
+              {posts.slice(0, 5).map((post, index) => (
+                <a
+                  href={`/blog/${post.id}`}
+                  class="group block relative p-4 sm:p-6 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1"
+                >
+                  <div
+                    class="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-full text-white transition-all duration-300"
+                    style={`background-color: ${siteConfig.accentColor}`}
+                  >
+                    <svg
+                      class="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 17L17 7M17 7H7M17 7V17"
+                      />
+                    </svg>
+                  </div>
+
+                  <div class="space-y-3 pr-14">
+                    <div>
+                      <span
+                        class="text-sm font-mono"
+                        style={{ color: siteConfig.accentColor }}
+                      >
+                        {formatDate(post.data.pubDate)}
+                      </span>
+                      <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mt-1">
+                        {post.data.title}
+                      </h3>
+                    </div>
+
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed line-clamp-2">
+                      {post.data.description}
+                    </p>
+
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
+                        {post.data.tags.slice(0, 4).map((tag) => (
+                          <span
+                            class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium"
+                            style={`background-color: ${siteConfig.accentColor}15; color: ${siteConfig.accentColor}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {posts.length > 5 && (
+              <div class="mt-8 text-center">
+                <a
+                  href="/blog"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg font-medium transition-all duration-300 hover:bg-gray-700"
+                >
+                  View all posts
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

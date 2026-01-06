@@ -1,9 +1,13 @@
 ---
 import { siteConfig } from "../config";
+import { getCollection } from "astro:content";
 
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const hasBlog = posts && posts.length > 0;
 ---
 
 <header
@@ -52,6 +56,18 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Education
+            </a>
+          </li>
+        )
+      }
+      {
+        hasBlog && (
+          <li>
+            <a
+              href="#blog"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              Blog
             </a>
           </li>
         )

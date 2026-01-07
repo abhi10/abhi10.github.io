@@ -218,4 +218,32 @@ function formatDate(date: Date): string {
     border-top: 1px solid #fcd34d;
     margin: 3rem 0;
   }
+
+  .prose-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+  }
+
+  .prose-content :global(th),
+  .prose-content :global(td) {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+
+  .prose-content :global(th) {
+    background-color: #fef3c7;
+    font-weight: 600;
+    color: #92400e;
+  }
+
+  .prose-content :global(tr:nth-child(even)) {
+    background-color: #fffbeb;
+  }
+
+  .prose-content :global(tr:hover) {
+    background-color: #fef3c7;
+  }
 </style>

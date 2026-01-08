@@ -40,9 +40,9 @@ export const siteConfig = {
   ],
   projects: [
     {
-      name: "Chitram - Image Hosting Service",
+      name: "Chitram (చిత్రం) - Image Hosting Service",
       description:
-        "Production-ready image hosting service with FastAPI, PostgreSQL, MinIO, and Supabase auth. Features a pluggable authentication system, async thumbnail generation, and a comprehensive test architecture with 89% coverage.",
+        "Image hosting service MVP for learning distributed systems. Built with FastAPI, PostgreSQL, MinIO, and Supabase auth. Features a pluggable authentication system, async thumbnail generation, and comprehensive test architecture.",
       link: "https://github.com/abhi10/chitram",
       skills: ["FastAPI", "Python", "PostgreSQL", "Supabase", "Docker"],
     },

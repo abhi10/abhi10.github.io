@@ -40,6 +40,13 @@ export const siteConfig = {
   ],
   projects: [
     {
+      name: "Chitram - Image Hosting Service",
+      description:
+        "Production-ready image hosting service with FastAPI, PostgreSQL, MinIO, and Supabase auth. Features a pluggable authentication system, async thumbnail generation, and a comprehensive test architecture with 89% coverage.",
+      link: "https://github.com/abhi10/chitram",
+      skills: ["FastAPI", "Python", "PostgreSQL", "Supabase", "Docker"],
+    },
+    {
       name: "Argus - AI Accessibility Assistant",
       description:
         "An intelligent accessibility testing tool that leverages AWS Bedrock and custom prompt engineering to identify WCAG compliance issues across web and mobile platforms. The system analyzes page structure semantically, reduces false positives by 40%, and provides actionable remediation guidance for development teams.",

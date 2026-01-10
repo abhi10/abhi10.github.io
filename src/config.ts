@@ -11,7 +11,7 @@ export const siteConfig = {
     github: "https://github.com/abhi10",
   },
   aboutMe:
-    "AI & Automation Engineer with 10+ years of experience building intelligent systems and scalable automation frameworks. Currently focused on applying LLMs and generative AI to solve complex engineering challenges, including AI-powered accessibility testing with AWS Bedrock and custom prompt engineering. Deep expertise in cloud-native platforms, distributed systems, and end-to-end test automation across multi-cloud environments. Track record of leading cross-functional initiatives that delivered 70% test coverage improvements and zero-defect releases at scale.",
+    "AI & Automation Engineer experienced in building intelligent systems and scalable automation frameworks. Currently focused on applying LLMs and generative AI to solve complex engineering challenges, including AI-powered accessibility testing with AWS Bedrock and custom prompt engineering. Strong experience with cloud-native platforms, end-to-end test automation, and building reliable systems across multi-cloud environments. Track record of leading cross-functional initiatives that delivered 70% test coverage improvements and zero-defect releases at scale. Open to Senior SDET, Test Architect, and AI/Automation Engineer roles.",
   skills: [
     "Python",
     "Java",

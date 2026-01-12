@@ -3,10 +3,19 @@ import { siteConfig } from "../../config";
 import BlogHeader from "../../components/BlogHeader.astro";
 import "../../styles/global.css";
 
+// AI Agents section - featured at top
+const aiAgents = [
+  {
+    name: "Agent AR",
+    description: "Being engineered by Particle Accelerator",
+    status: "In Development",
+  },
+];
+
 // Resource categories - easy to extend
 const resources = [
   {
-    category: "Tools I Use",
+    category: "AI & LLM Tools",
     items: [
       {
         name: "Claude Code",
@@ -14,9 +23,24 @@ const resources = [
         link: "https://claude.ai/code",
       },
       {
+        name: "Cursor",
+        description: "AI-first code editor built for pair programming with AI",
+        link: "https://cursor.com",
+      },
+    ],
+  },
+  {
+    category: "Tools I Use",
+    items: [
+      {
         name: "Playwright",
         description: "End-to-end testing framework for modern web apps",
         link: "https://playwright.dev",
+      },
+      {
+        name: "FastAPI",
+        description: "Modern, fast Python web framework for building APIs",
+        link: "https://fastapi.tiangolo.com",
       },
     ],
   },
@@ -77,6 +101,34 @@ const resources = [
           Tools, articles, and projects I find useful.
         </p>
       </div>
+
+      <!-- AI Agents Section -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+          <span class="text-2xl">🤖</span> AI Agents
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {aiAgents.map((agent) => (
+            <div
+              class="relative p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200"
+            >
+              <div class="absolute top-4 right-4">
+                <span
+                  class="px-2 py-1 text-xs font-medium rounded-full bg-amber-100 text-amber-700"
+                >
+                  {agent.status}
+                </span>
+              </div>
+              <h3 class="font-bold text-xl text-gray-800">
+                {agent.name}
+              </h3>
+              <p class="mt-2 text-gray-600">
+                {agent.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <div class="space-y-12">
         {resources.map((section) => (

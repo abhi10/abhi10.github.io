@@ -10,6 +10,11 @@ export const siteConfig = {
     twitter: "",
     github: "https://github.com/abhi10",
   },
+  // Navigation links for header
+  navigation: [
+    { name: "Blog", href: "/blog" },
+    { name: "Resources", href: "/resources" },
+  ],
   aboutMe:
     "AI & Automation Engineer experienced in building intelligent systems and scalable automation frameworks. Currently focused on applying LLMs and generative AI to solve complex engineering challenges, including AI-powered accessibility testing with AWS Bedrock and custom prompt engineering. Strong experience with cloud-native platforms, end-to-end test automation, and building reliable systems across multi-cloud environments. Track record of leading cross-functional initiatives that delivered 70% test coverage improvements and zero-defect releases at scale. Open to Senior SDET, Test Architect, and AI/Automation Engineer roles.",
   skills: [
@@ -51,7 +56,13 @@ export const siteConfig = {
       description:
         "An intelligent accessibility testing tool that leverages AWS Bedrock and custom prompt engineering to identify WCAG compliance issues across web and mobile platforms. The system analyzes page structure semantically, reduces false positives by 40%, and provides actionable remediation guidance for development teams.",
       link: "",
-      skills: ["AWS Bedrock", "Python", "LangChain", "Playwright", "Accessibility"],
+      skills: [
+        "AWS Bedrock",
+        "Python",
+        "LangChain",
+        "Playwright",
+        "Accessibility",
+      ],
     },
     {
       name: "E-Commerce Test Automation Framework",
@@ -65,7 +76,13 @@ export const siteConfig = {
       description:
         "Automated web scanning system built to ensure European Accessibility Act compliance across 4,800 pages in 8 locales. Coordinated with 8 teams to implement scanning, defect tracking, and remediation workflows for Ring Ecommerce properties.",
       link: "",
-      skills: ["Python", "Selenium", "Accessibility", "Automation", "Compliance"],
+      skills: [
+        "Python",
+        "Selenium",
+        "Accessibility",
+        "Automation",
+        "Compliance",
+      ],
     },
   ],
   experience: [

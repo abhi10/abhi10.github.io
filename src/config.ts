@@ -5,7 +5,7 @@ export const siteConfig = {
     "Portfolio website of Abhishek Raju - AI & Automation Engineer building intelligent systems with LLMs, AWS Bedrock, and scalable test automation",
   accentColor: "#d97706",
   social: {
-    email: "abhishek.rc@gmail.com",
+    email: "arajubuild@gmail.com",
     linkedin: "https://www.linkedin.com/in/abhishekrc/",
     twitter: "",
     github: "https://github.com/abhi10",

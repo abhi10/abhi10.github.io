@@ -1,0 +1,182 @@
+---
+import { siteConfig } from "../../config";
+import BlogHeader from "../../components/BlogHeader.astro";
+import "../../styles/global.css";
+
+// Resource categories - easy to extend
+const resources = [
+  {
+    category: "AI & LLM Tools",
+    items: [
+      {
+        name: "Claude Code",
+        description: "AI-powered coding assistant for complex development tasks",
+        link: "https://claude.ai/code",
+      },
+      {
+        name: "Zed",
+        description: "High-performance, multiplayer code editor from the creators of Atom",
+        link: "https://zed.dev",
+      },
+    ],
+  },
+  {
+    category: "Tools I Use",
+    items: [
+      {
+        name: "Playwright",
+        description: "End-to-end testing framework for modern web apps",
+        link: "https://playwright.dev",
+      },
+      {
+        name: "FastAPI",
+        description: "Modern, fast Python web framework for building APIs",
+        link: "https://fastapi.tiangolo.com",
+      },
+    ],
+  },
+  {
+    category: "Books: AI/ML",
+    items: [
+      {
+        name: "Chip Huyen's Books",
+        description: "Practical ML systems design and real-world AI engineering",
+        link: "https://huyenchip.com/books/",
+      },
+    ],
+  },
+  {
+    category: "Books: Distributed Systems",
+    items: [
+      {
+        name: "Designing Data-Intensive Applications",
+        description: "Martin Kleppmann's essential guide to building reliable, scalable systems",
+        link: "https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/",
+      },
+    ],
+  },
+  {
+    category: "Books: Software Testing",
+    items: [
+      {
+        name: "Lessons Learned in Software Testing",
+        description: "A context-driven approach - timeless wisdom from Kaner, Bach, and Pettichord",
+        link: "https://books.google.com/books/about/Lessons_Learned_in_Software_Testing.html?id=byZmT73R1a8C",
+      },
+      {
+        name: "A Context-Driven Approach to Automation in Testing",
+        description: "James Bach & Michael Bolton on thinking about test automation",
+        link: "https://rapid-software-testing.com/a-context-driven-approach-to-automation-in-testing/",
+      },
+      {
+        name: "Testing on the Toilet",
+        description: "Google's bite-sized testing tips",
+        link: "https://testing.googleblog.com/",
+      },
+    ],
+  },
+
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={`Resources curated by ${siteConfig.name}`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Resources - {siteConfig.name}</title>
+  </head>
+  <body class="bg-amber-50/30">
+    <BlogHeader currentPath="/resources" />
+
+    <main class="max-w-4xl mx-auto px-6 sm:px-8 py-16 sm:py-20">
+      <div class="mb-14">
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-4"
+        >
+          Resources
+        </h1>
+        <div
+          class="w-20 h-1 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        >
+        </div>
+        <p class="mt-6 text-lg text-gray-600">
+          Tools, articles, and projects I find useful.
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {resources.map((section) => (
+          <section>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+              {section.category}
+            </h2>
+            <div class="grid gap-4 sm:grid-cols-2">
+              {section.items.map((item) => (
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group block p-6 bg-white rounded-xl border border-amber-100 transition-all duration-300 hover:shadow-md hover:border-amber-200"
+                >
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 class="font-semibold text-gray-800 group-hover:text-amber-700 transition-colors">
+                        {item.name}
+                      </h3>
+                      <p class="mt-2 text-sm text-gray-600">
+                        {item.description}
+                      </p>
+                    </div>
+                    <svg
+                      class="w-5 h-5 text-amber-500 flex-shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-16 p-6 bg-amber-50 rounded-xl border border-amber-100">
+        <p class="text-gray-600 text-sm">
+          Have a resource suggestion?
+          <a
+            href={`mailto:${siteConfig.social.email}`}
+            class="font-medium transition-colors"
+            style={`color: ${siteConfig.accentColor}`}
+          >
+            Let me know
+          </a>.
+        </p>
+      </div>
+    </main>
+
+    <footer class="border-t border-amber-200/50 p-8 sm:p-10 mt-12 bg-white/50">
+      <div class="max-w-4xl mx-auto text-center text-amber-700 text-sm">
+        &copy; {new Date().getFullYear()}
+        {siteConfig.name}. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>

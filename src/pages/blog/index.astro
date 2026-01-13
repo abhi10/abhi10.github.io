@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { siteConfig } from "../../config";
+import BlogHeader from "../../components/BlogHeader.astro";
 import "../../styles/global.css";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
@@ -32,28 +33,7 @@ function formatDate(date: Date): string {
     <title>Blog - {siteConfig.name}</title>
   </head>
   <body class="bg-amber-50/30">
-    <header class="p-6 sm:p-8 border-b border-amber-200/50 bg-white/50">
-      <nav class="max-w-4xl mx-auto">
-        <a
-          href="/"
-          class="text-amber-700 hover:text-amber-900 transition-colors flex items-center gap-2"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-          </svg>
-          Back to home
-        </a>
-      </nav>
-    </header>
+    <BlogHeader currentPath="/blog" />
 
     <main class="max-w-4xl mx-auto px-6 sm:px-8 py-16 sm:py-20">
       <div class="mb-14">

@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # blog drafts (not published)
 drafts/
+
+# future ideas (local only)
+docs/

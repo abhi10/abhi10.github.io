@@ -10,6 +10,9 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // New fields for social links (backward compatible - all optional)
+    linkedinPost: z.string().url().optional(),
+    githubRepo: z.string().url().optional(),
   }),
 });
 

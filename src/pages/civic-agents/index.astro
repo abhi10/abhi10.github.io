@@ -1,0 +1,160 @@
+---
+import { siteConfig } from "../../config";
+import BlogHeader from "../../components/BlogHeader.astro";
+import "../../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Civic Agents - AI agents that serve civic infrastructure" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Civic Agents - {siteConfig.name}</title>
+  </head>
+  <body class="bg-amber-50/30">
+    <BlogHeader currentPath="/civic-agents" />
+
+    <main class="max-w-4xl mx-auto px-6 sm:px-8 py-16 sm:py-20">
+      <div class="mb-14">
+        <div class="flex items-center gap-4 mb-4">
+          <span class="text-5xl">🏛️</span>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800">
+            Civic Agents
+          </h1>
+        </div>
+        <div
+          class="w-20 h-1 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        >
+        </div>
+      </div>
+
+      <!-- Status Badge -->
+      <div class="mb-12">
+        <span
+          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-purple-100 text-purple-800"
+        >
+          <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+          Idea Stage
+        </span>
+      </div>
+
+      <!-- Main Description -->
+      <div class="prose-content max-w-none">
+        <div class="p-8 bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl border border-purple-200 mb-12">
+          <p class="text-xl text-gray-700 leading-relaxed">
+            Building a platform for <strong class="text-purple-700">AI agents that serve civic infrastructure</strong> — pothole detection, disaster alerts, community services.
+          </p>
+        </div>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">The Vision</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Most AI today serves knowledge workers with fast internet. What about the infrastructure that serves everyone else?
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Civic Agents explores how AI can help with unglamorous but critical problems — roads that need fixing, communities that need early warning systems, and services that need to reach people who are often left out.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Ideas Being Explored</h2>
+          <div class="space-y-4">
+            <div class="p-4 bg-white rounded-lg border border-amber-100">
+              <h3 class="font-semibold text-gray-800">🛣️ Pothole Mapper</h3>
+              <p class="text-gray-600 text-sm mt-1">Crowdsourced civic infrastructure monitoring with AI verification</p>
+            </div>
+            <div class="p-4 bg-white rounded-lg border border-amber-100">
+              <h3 class="font-semibold text-gray-800">🌱 Plant Disease Detection</h3>
+              <p class="text-gray-600 text-sm mt-1">Offline-first vision AI for farmers</p>
+            </div>
+            <div class="p-4 bg-white rounded-lg border border-amber-100">
+              <h3 class="font-semibold text-gray-800">⛰️ Landslide Early Warning</h3>
+              <p class="text-gray-600 text-sm mt-1">Satellite + sensor prediction for vulnerable regions</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Planned Stack</h2>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-800">TypeScript</span>
+            <span class="px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-800">Firebase</span>
+            <span class="px-3 py-1 rounded-full text-sm font-medium bg-amber-100 text-amber-800">Claude API</span>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="p-8 bg-white rounded-xl border border-amber-100">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">Want to collaborate?</h3>
+          <p class="text-gray-600 mb-4">
+            I'm looking for collaborators and mentors in AI for social impact. Read more about these ideas on my blog.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="/blog/ai-for-social-impact"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white transition-colors"
+              style={`background-color: ${siteConfig.accentColor}`}
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Read the Blog Post
+            </a>
+            <a
+              href="https://github.com/abhi10/civicagents"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+            <a
+              href="https://www.civicagents.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-amber-300 text-amber-700 hover:bg-amber-50 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              civicagents.ai
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="border-t border-amber-200/50 p-8 sm:p-10 mt-12 bg-white/50">
+      <div class="max-w-4xl mx-auto text-center text-amber-700 text-sm">
+        &copy; {new Date().getFullYear()}
+        {siteConfig.name}. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .prose-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-content p {
+    margin-bottom: 1rem;
+  }
+</style>

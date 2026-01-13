@@ -13,7 +13,7 @@ export const siteConfig = {
   // Navigation links for header
   navigation: [
     { name: "Projects", href: "/projects" },
-    { name: "Agent AR", href: "/agent-ar" },
+    { name: "Civic Agents", href: "/civic-agents" },
     { name: "Blog", href: "/blog" },
     { name: "Resources", href: "/resources" },
   ],

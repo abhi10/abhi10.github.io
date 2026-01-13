@@ -43,7 +43,18 @@ const projects = [
       "Context-aware reasoning with Claude",
     ],
   },
-
+  {
+    name: "Civic Agents",
+    subtitle: "AI Agents for Civic Infrastructure",
+    description: "Building a platform for AI agents that serve civic infrastructure—pothole detection, disaster alerts, community services.",
+    status: "Idea Stage",
+    github: "https://github.com/abhi10/civicagents",
+    deepwiki: "",
+    demo: "https://www.civicagents.ai/",
+    skills: ["TypeScript", "Firebase", "Claude API"],
+    relatedPosts: ["ai-for-social-impact"],
+    highlights: [],
+  },
 ];
 
 // Helper to get post data by slug
@@ -55,8 +66,11 @@ function getPostBySlug(slug: string) {
 function getStatusColor(status: string) {
   switch (status) {
     case "Production": return "bg-green-100 text-green-800";
+    case "V1 Launched!": return "bg-green-100 text-green-800";
+    case "V0 Launched!": return "bg-blue-100 text-blue-800";
     case "In Progress": return "bg-amber-100 text-amber-800";
     case "In Development": return "bg-blue-100 text-blue-800";
+    case "Idea Stage": return "bg-purple-100 text-purple-800";
     default: return "bg-gray-100 text-gray-800";
   }
 }

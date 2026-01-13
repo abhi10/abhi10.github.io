@@ -62,8 +62,6 @@ What if we built AI that:
 
 **The Solution:** A small vision model running directly on a farmer's phone that detects early plant diseases from leaf photos — no internet required.
 
-> "A farm using a small vision model to detect early plant diseases directly on-site, without internet access, ensures farmers get real-time alerts while keeping costs low."
-
 **How it works:**
 - Farmer takes photo of plant leaves during routine field walk
 - On-device model identifies disease signatures

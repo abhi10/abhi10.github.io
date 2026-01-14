@@ -9,6 +9,7 @@ const posts = await getCollection("blog", ({ data }) => !data.draft);
 const hasBlog = posts && posts.length > 0;
 ---
 
+<!-- Desktop Header -->
 <header
   id="header"
   class="fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300"
@@ -35,30 +36,6 @@ const hasBlog = posts && posts.length > 0;
           </li>
         )
       }
-      {
-        hasEducation && (
-          <li>
-            <a
-              href="#education"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Education
-            </a>
-          </li>
-        )
-      }
-      {
-        hasBlog && (
-          <li>
-            <a
-              href="#blog"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
-            >
-              Blog
-            </a>
-          </li>
-        )
-      }
       <li>
         <a
           href="/projects"
@@ -69,10 +46,10 @@ const hasBlog = posts && posts.length > 0;
       </li>
       <li>
         <a
-          href="/civic-agents"
+          href="/blog"
           class="text-gray-700 hover:text-black transition-colors font-medium"
         >
-          Civic Agents
+          Blog
         </a>
       </li>
       <li>
@@ -83,11 +60,80 @@ const hasBlog = posts && posts.length > 0;
           Resources
         </a>
       </li>
+      <li>
+        <a
+          href="/ideahamster"
+          class="text-gray-700 hover:text-black transition-colors font-medium"
+        >
+          Ideahamster
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
 
+<!-- Mobile Header -->
+<header class="fixed top-0 left-0 right-0 z-50 md:hidden bg-white/90 backdrop-blur-sm border-b border-gray-100">
+  <div class="flex items-center justify-between px-4 py-3">
+    <a href="/" class="font-semibold text-gray-800">{siteConfig.name}</a>
+    <button
+      id="mobile-menu-btn"
+      class="p-2 text-gray-700 hover:text-black transition-colors"
+      aria-label="Toggle menu"
+    >
+      <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden border-t border-gray-100 bg-white">
+    <ul class="py-4 px-4 space-y-1">
+      <li>
+        <a href="#about" class="block py-2 px-3 text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors">
+          About
+        </a>
+      </li>
+      {hasExperience && (
+        <li>
+          <a href="#experience" class="block py-2 px-3 text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors">
+            Experience
+          </a>
+        </li>
+      )}
+      <li>
+        <a href="/projects" class="block py-2 px-3 text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors">
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="/blog" class="block py-2 px-3 text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors">
+          Blog
+        </a>
+      </li>
+      <li>
+        <a href="/resources" class="block py-2 px-3 text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors">
+          Resources
+        </a>
+      </li>
+      <li>
+        <a href="/ideahamster" class="block py-2 px-3 text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors">
+          Ideahamster
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Spacer for mobile header -->
+<div class="h-14 md:hidden"></div>
+
 <script>
+  // Desktop scroll effect
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     if (window.scrollY > 100) {
@@ -95,6 +141,35 @@ const hasBlog = posts && posts.length > 0;
     } else {
       header?.classList.remove("bg-white/80", "backdrop-blur-sm");
     }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  mobileMenuBtn?.addEventListener("click", () => {
+    const isOpen = mobileMenu?.classList.contains("hidden");
+
+    if (isOpen) {
+      mobileMenu?.classList.remove("hidden");
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+    } else {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    }
+  });
+
+  // Close mobile menu when clicking a link
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    });
   });
 </script>
 

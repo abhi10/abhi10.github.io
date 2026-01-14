@@ -85,6 +85,13 @@ export const ideas: Idea[] = [
     tags: ["Mobile", "Full Stack"],
     status: "idea",
   },
+  {
+    name: "Trash Alert",
+    summary:
+      "Meta Glasses app using Vision API to identify and alert about trash/litter in real-time",
+    tags: ["AI", "Vision", "Wearables", "Civic Tech"],
+    status: "idea",
+  },
 ];
 
 // Helper to get status emoji

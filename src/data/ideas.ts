@@ -64,6 +64,27 @@ export const ideas: Idea[] = [
     tags: ["QA", "AI", "Platform"],
     status: "idea",
   },
+  {
+    name: "Python Package Template",
+    summary:
+      "Create a reusable Python package with modern tooling and best practices",
+    tags: ["Python", "Developer Tools"],
+    status: "idea",
+  },
+  {
+    name: "Voice AI Agent",
+    summary:
+      "Build a conversational voice AI agent for hands-free interactions",
+    tags: ["AI", "Voice", "Agent"],
+    status: "idea",
+  },
+  {
+    name: "Library Book App",
+    summary:
+      "Personal library management app for tracking books, reading progress, and recommendations",
+    tags: ["Mobile", "Full Stack"],
+    status: "idea",
+  },
 ];
 
 // Helper to get status emoji

@@ -1,7 +1,7 @@
 ---
 title: "Building an AI Provider System: The Strategy Pattern for Vision APIs (Part 1 of 3)"
 description: "Built a swappable AI provider system for automatic image tagging using the Strategy pattern. Switch between OpenAI Vision, Google Vision, or mock providers with a single environment variable - zero code changes."
-pubDate: 2026-01-18
+pubDate: 2026-01-17
 tags: ["ai", "strategy-pattern", "architecture", "openai", "vision-api"]
 draft: false
 githubRepo: "https://github.com/abhi10/chitram"

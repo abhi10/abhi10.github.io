@@ -1,7 +1,7 @@
 ---
 title: "AI Tagging Evolution: Manual First, Automatic Second (Part 2 of 3)"
 description: "We started with a manual /ai-tag endpoint before building automatic tagging with Celery. Why? Validate the hard part (AI integration) before adding distributed systems complexity."
-pubDate: 2026-01-19
+pubDate: 2026-01-18
 tags: ["ai", "manual"]
 draft: false
 githubRepo: "https://github.com/abhi10/chitram"
@@ -259,8 +259,6 @@ def generate_ai_tags_task(self, image_id: str):
 
 ## Real Production Result
 
-**Live example:** https://chitram.io/image/49337a614-4783-439b-8f72-16e87e1b5bdd
-
 **What happened:**
 - User uploaded tropical palm garden photo (257.5 KB JPEG)
 - Upload completed in <500ms (image saved, task enqueued)
@@ -268,14 +266,13 @@ def generate_ai_tags_task(self, image_id: str):
 - Background: Fetched from MinIO, called OpenAI gpt-4o-mini
 - Background: 7 tags saved (10 seconds total)
 
-**AI tags generated (all 90% confidence):**
-- blue sky
-- greenery
-- lush
-- palms
-- tropical
-- mock-object (from test provider)
-- mock-scene (from test provider)
+**AI tags generated automatically:**
+
+![AI-generated tags example showing automatic tagging in action](/images/blog/image-ai-tags.png)
+
+**Tags:**
+- **Manual:** User must add via `/tags` endpoint ❌
+- **AI:** Automatically generated (palms, tropical, greenery, blue sky, lush) ✅
 
 **Cost:** ~$0.004
 

@@ -1,7 +1,7 @@
 ---
 title: "Deployment Debugging: How Code Duplication Caused a Production Bug (Part 3 of 3)"
 description: "Deployed automatic AI tagging expecting smooth rollout. Reality: 5 cascading infrastructure bugs, 3 hours of debugging. The final bug? Code duplication caused storage backend mismatch."
-pubDate: 2026-01-20
+pubDate: 2026-01-19
 tags: ["deployment", "debugging", "dry-principle", "production-bugs", "refactoring"]
 draft: false
 githubRepo: "https://github.com/abhi10/chitram"

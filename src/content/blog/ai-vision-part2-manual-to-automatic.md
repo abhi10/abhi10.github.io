@@ -20,6 +20,12 @@ We started with a manual `/ai-tag` endpoint (Phase 5) before building automatic 
 - 30 seconds per image
 - Most users skip it (too tedious)
 
+**The upload flow without AI:**
+
+![Upload flow showing manual tagging requirement](/images/blog/image-upload-flow.png)
+
+Notice the yellow box: **"User must manually add tags via /tags endpoint"** - this was the pain point we wanted to solve.
+
 **Example:** Harbor photo with boats, mountains, clouds
 - User sees: "No tags yet"
 - Must manually type: "harbor", "boats", "mountains", "clouds", "water"

@@ -47,6 +47,26 @@ Abstract the "what" (analyze image → get tags) from the "how" (OpenAI vs Googl
 
 **Core idea:** Define a common interface, implement it multiple ways, switch via configuration.
 
+```
+┌─────────────────────────────────────────────────────┐
+│           Application Code (Caller)                 │
+│   tags = await provider.analyze_image(bytes)       │
+└────────────────────┬────────────────────────────────┘
+                     │ depends on abstraction
+                     ▼
+         ┌─────────────────────────┐
+         │  AITaggingProvider      │ ← Interface
+         │  - analyze_image()      │
+         └─────────────────────────┘
+                     △
+        ┌────────────┼────────────┐
+        │            │            │
+   ┌────▼────┐  ┌───▼────┐  ┌───▼─────┐
+   │  Mock   │  │ OpenAI │  │ Google  │ ← Implementations
+   │Provider │  │Provider│  │Provider │
+   └─────────┘  └────────┘  └─────────┘
+```
+
 ### The Interface
 
 ```python
@@ -91,6 +111,14 @@ class AITaggingProvider(ABC):
 ---
 
 ## Three Implementations
+
+**Provider comparison:**
+
+| Provider | Use Case | Cost/Image | Speed | Production Ready |
+|----------|----------|------------|-------|------------------|
+| Mock | Local dev, CI/CD, unit tests | $0 | Instant | ❌ (Testing only) |
+| OpenAI Vision | Production tagging | ~$0.004 | 2-3 sec | ✅ |
+| Google Vision | Future (cost optimization) | ~$0.0015 | 1-2 sec | 🚧 (Planned) |
 
 ### 1. MockAIProvider (Free, Testing)
 
@@ -185,6 +213,15 @@ class GoogleVisionProvider(AITaggingProvider):
 ---
 
 ## The Factory: Configuration-Driven Switching
+
+**How configuration controls implementation:**
+
+```
+Environment Variable          Factory Decision
+AI_PROVIDER=mock       →     MockAIProvider()
+AI_PROVIDER=openai     →     OpenAIVisionProvider(api_key, model, max_tags)
+AI_PROVIDER=google     →     GoogleVisionProvider(api_key, max_tags)
+```
 
 ```python
 # app/services/ai/__init__.py

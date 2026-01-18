@@ -32,6 +32,16 @@ Deploy → Worker crash → Fix → Redis auth error → Fix → Password quotes
 
 ## The 5 Cascading Bugs (Quick Summary)
 
+| Bug # | Symptom | Root Cause | Fix | Time |
+|-------|---------|------------|-----|------|
+| 1 | `celery: error: unrecognized arguments` | Missing `uv run` prefix | Add `uv run` to command | 15min |
+| 2 | `Authentication required` | Redis password not passed | Add password to broker URL | 20min |
+| 3 | `invalid username-password pair` | Quotes not stripped from env var | `tr -d '\n\r"'` | 30min |
+| 4 | `Connection refused` (app) | App missing Celery config | Add Celery URLs to app service | 20min |
+| 5 | `FileNotFoundError` | Storage backend mismatch | Storage Factory Pattern | 45min |
+
+**Detailed breakdown:**
+
 ### Bug #1: Missing `uv run` Prefix
 ```
 celery: error: unrecognized arguments: worker --loglevel=info
@@ -81,6 +91,30 @@ Error 111 connecting to localhost:6379. Connection refused.
 ---
 
 ## The Root Cause: Code Duplication
+
+**The mismatch visualized:**
+
+```
+┌─────────────────────────────────────────────────────┐
+│               FastAPI App (main.py)                 │
+│                                                     │
+│  STORAGE_BACKEND=minio                             │
+│  ↓                                                  │
+│  Upload image ──────────►  MinIO Storage ✅        │
+│                            (file saved)             │
+└─────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────┐
+│            Celery Worker (ai_tagging.py)            │
+│                                                     │
+│  HARDCODED: LocalStorageBackend                    │
+│  ↓                                                  │
+│  Read image ──────────►  Local Filesystem ❌       │
+│                          (file not found!)          │
+└─────────────────────────────────────────────────────┘
+
+Result: FileNotFoundError!
+```
 
 **Problem:** Storage initialization logic was duplicated in TWO places:
 
@@ -181,16 +215,15 @@ storage = StorageService(backend=storage_backend)
 
 ## Before vs After
 
-**Before (17 lines duplicated):**
-- main.py: 17 lines of storage init
-- ai_tagging.py: 1 line (hardcoded local)
-- **Total:** 18 lines, 2 different implementations
-
-**After (DRY):**
-- storage_factory.py: 20 lines (shared)
-- main.py: 1 line (factory call)
-- ai_tagging.py: 1 line (factory call)
-- **Total:** 22 lines, 1 implementation
+| Metric | Before (Duplicated) | After (Factory Pattern) |
+|--------|---------------------|-------------------------|
+| **Files with init logic** | 2 (main.py, ai_tagging.py) | 1 (storage_factory.py) |
+| **Lines of code** | 18 (17 + 1) | 22 (20 + 1 + 1) |
+| **Implementations** | 2 different ❌ | 1 shared ✅ |
+| **Consistency** | Not guaranteed ❌ | Guaranteed ✅ |
+| **Bug risk** | High (divergence over time) | Low (single source of truth) |
+| **Adding new backend** | Update 2 files | Update 1 file (factory) |
+| **Testing** | Must test both | Test factory once |
 
 **Trade-off:** Slightly more lines, but:
 - ✅ Single source of truth
@@ -229,15 +262,14 @@ storage = StorageService(backend=storage_backend)
 
 ### 2. Environment Parity Matters
 
-**Local dev:**
-- `STORAGE_BACKEND=local`
-- No Redis password
-- Synchronous tasks (mock provider)
+**Environment differences that caused bugs:**
 
-**Production:**
-- `STORAGE_BACKEND=minio`
-- Redis password required
-- Asynchronous Celery tasks
+| Component | Local Dev | Production | Bug? |
+|-----------|-----------|------------|------|
+| Storage | `STORAGE_BACKEND=local` | `STORAGE_BACKEND=minio` | ✅ (Bug #5) |
+| Redis password | Not required | Required | ✅ (Bug #2, #3) |
+| Task execution | Synchronous (mock) | Async (Celery) | ✅ (Bug #1, #4) |
+| Image location | Local filesystem | MinIO bucket | ✅ (Bug #5) |
 
 **Gap:** Hardcoded local storage in worker worked in dev, failed in prod.
 

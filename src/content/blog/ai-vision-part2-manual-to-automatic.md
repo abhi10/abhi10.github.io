@@ -33,6 +33,11 @@ We started with a manual `/ai-tag` endpoint (Phase 5) before building automatic 
 
 ## Two Paths to Automatic Tagging
 
+| Approach | Complexity | Debug Difficulty | Time to Validate AI |
+|----------|------------|------------------|---------------------|
+| Path A: Direct to automatic | High (AI + Celery + Redis) | Hard (many unknowns) | Slow |
+| Path B: Manual first | Low (just AI) | Easy (synchronous) | Fast ✅ |
+
 ### Path A: Go Automatic Immediately (Risky)
 
 ```
@@ -67,9 +72,18 @@ Phase 6: Upload → Save → Celery task → OpenAI → Save tags
 **Architecture:**
 
 ```
-User clicks "Generate Tags" → FastAPI endpoint → OpenAI API → Save tags → Return response
-                                     ↓
-                              Blocks for 2-3 seconds
+┌──────┐                ┌─────────────┐           ┌──────────┐
+│ User │  Click button  │   FastAPI   │  HTTP API │  OpenAI  │
+│      │ ────────────►  │  Endpoint   │ ────────► │  Vision  │
+└──────┘                │             │           └──────────┘
+                        │  (blocks)   │  2-3 sec       │
+                        │             │ ◄──────────────┘
+                        │  Save tags  │
+                        │ to database │
+                        │             │
+                        └─────────────┘
+                             │ Response
+                        (after 2-3 sec)
 ```
 
 **Implementation:**
@@ -132,11 +146,31 @@ async def generate_ai_tags(
 **Architecture:**
 
 ```
-Upload → Save → Enqueue Celery task → Return response (<500ms)
-                        ↓
-                 Background worker
-                        ↓
-                 Fetch from MinIO → OpenAI API → Save tags (~10 sec total)
+┌──────┐          ┌─────────────┐         ┌───────┐
+│ User │  Upload  │   FastAPI   │  Enqueue│ Redis │
+│      │────────► │  Endpoint   │────────►│ Queue │
+└──────┘          │             │         └───────┘
+                  │  Save image │            │
+                  │             │            │ Task
+                  └─────────────┘            │
+                       │ Response            ▼
+                  (instant <500ms)   ┌──────────────┐
+                                     │Celery Worker │
+                                     │  (background)│
+                                     └──────────────┘
+                                           │
+                                  ┌────────┴────────┐
+                                  ▼                 ▼
+                            ┌─────────┐      ┌──────────┐
+                            │  MinIO  │      │  OpenAI  │
+                            │ Storage │      │  Vision  │
+                            └─────────┘      └──────────┘
+                                  │               │
+                                  └───► Tags ◄────┘
+                                         │
+                                         ▼
+                                  Save to database
+                                  (~10 sec total)
 ```
 
 **Implementation:**
@@ -244,17 +278,12 @@ def generate_ai_tags_task(self, image_id: str):
 
 ## Why Incremental Complexity Matters
 
-**What we learned from Phase 5:**
-- OpenAI API works reliably
-- Prompt quality is good (accurate tags)
-- Cost is acceptable (~$0.004/image)
-- Error handling works (API failures gracefully degrade)
+**Debugging isolation by phase:**
 
-**What we debugged in Phase 6:**
-- Celery command not found
-- Redis connection refused
-- Task not registering
-- **FileNotFoundError: Storage backend mismatch** (covered in Part 3)
+| Phase | What We Validated | What We Debugged | Time Saved |
+|-------|-------------------|------------------|------------|
+| Phase 5 (Manual) | ✅ OpenAI API works<br>✅ Prompt quality good<br>✅ Cost acceptable<br>✅ Error handling works | Nothing! Worked first try. | N/A |
+| Phase 6 (Automatic) | ✅ AI already proven | ❌ Celery command not found<br>❌ Redis connection refused<br>❌ Task not registering<br>❌ Storage backend mismatch | 5x faster (knew AI wasn't the problem) |
 
 **Key insight:** Because Phase 5 proved the AI integration worked, we knew Phase 6 bugs were infrastructure-only. This made debugging 5x faster - we didn't waste time debugging OpenAI integration.
 

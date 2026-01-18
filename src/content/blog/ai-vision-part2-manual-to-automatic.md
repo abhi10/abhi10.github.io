@@ -1,7 +1,7 @@
 ---
 title: "AI Tagging Evolution: Manual First, Automatic Second (Part 2 of 3)"
 description: "We started with a manual /ai-tag endpoint before building automatic tagging with Celery. Why? Validate the hard part (AI integration) before adding distributed systems complexity."
-pubDate: 2026-01-13
+pubDate: 2026-01-19
 tags: ["ai", "manual"]
 draft: false
 githubRepo: "https://github.com/abhi10/chitram"

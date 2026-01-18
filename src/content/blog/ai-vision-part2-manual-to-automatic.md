@@ -149,7 +149,13 @@ async def generate_ai_tags(
 
 ## Phase 6: Automatic with Celery (Production)
 
-**Architecture:**
+**Architecture with AI Vision:**
+
+![AI-powered automatic tagging workflow](/images/blog/ai-tagging-image.png)
+
+The flow now includes automatic AI tagging enqueued as a Celery background task. The user gets an instant response while tags are generated asynchronously.
+
+**Text representation:**
 
 ```
 ┌──────┐          ┌─────────────┐         ┌───────┐

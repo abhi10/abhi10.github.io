@@ -90,7 +90,7 @@ export const siteConfig = {
   experience: [
     {
       company: "Amazon",
-      title: "Senior QA Automation Engineer",
+      title: "Senior Automation Engineer",
       dateRange: "Mar 2021 - Present",
       bullets: [
         "Co-led Argus, an AI accessibility assistant utilizing custom prompt engineering on AWS Bedrock; integrated multi-platform (Web/Mobile) testing strategies and streamlined defect identification and resolution",

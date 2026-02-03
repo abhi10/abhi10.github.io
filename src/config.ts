@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Abhishek Raju",
-  title: "AI & Automation Engineer",
+  title: "AI Engineer",
   description:
     "Portfolio website of Abhishek Raju - AI & Automation Engineer building intelligent systems with LLMs, AWS Bedrock, and scalable test automation",
   accentColor: "#d97706",
@@ -18,32 +18,26 @@ export const siteConfig = {
     { name: "Ideahamster", href: "/ideahamster" },
   ],
   aboutMe:
-    "AI & Automation Engineer experienced in building intelligent systems and scalable automation frameworks. Currently focused on applying LLMs and generative AI to solve complex engineering challenges, including AI-powered accessibility testing with AWS Bedrock and custom prompt engineering. Strong experience with cloud-native platforms, end-to-end test automation, and building reliable systems across multi-cloud environments. Track record of leading cross-functional initiatives that delivered 70% test coverage improvements and zero-defect releases at scale. Open to Senior SDET, Test Architect, and AI/Automation Engineer roles.",
+    "AI Engineer specializing in RAG systems, LLM integration, and production generative AI. Architected pipelines processing 50k+ customer reviews (Pinecone + LangChain + OpenAI), built compliance automation scanning 4,800 pages (Playwright + Bedrock), and deployed vision-based AI assistants serving 40+ users. Currently building Chitram (AI image hosting) and Gremlin (AI QA agent with 70+ risk patterns). Strong in Python, AWS AI/ML stack, prompt engineering, and distributed systems. Seeking AI Engineer roles.",
   skills: [
     "Python",
-    "Java",
-    "TypeScript",
-    "Bash",
-    "SQL",
+    "LangChain",
+    "RAG",
+    "Pinecone",
+    "ChromaDB",
     "AWS Bedrock",
+    "OpenAI",
+    "Claude API",
     "Prompt Engineering",
-    "RAG Pipelines",
+    "Hugging Face",
     "FastAPI",
-    "REST APIs",
-    "GraphQL",
     "PostgreSQL",
     "Redis",
-    "SQLAlchemy",
-    "AWS",
-    "Terraform",
     "Docker",
     "Kubernetes",
-    "Playwright",
-    "Pytest",
-    "Jest",
+    "AWS (Lambda, Step Functions, SageMaker, ECS)",
     "CI/CD",
-    "Prometheus",
-    "Grafana",
+    "CloudWatch",
   ],
   projects: [
     {
@@ -52,6 +46,13 @@ export const siteConfig = {
         "Image hosting service MVP for learning distributed systems. Built with FastAPI, PostgreSQL, MinIO, and Supabase auth. Features a pluggable authentication system, async thumbnail generation, and comprehensive test architecture.",
       link: "https://github.com/abhi10/chitram",
       skills: ["FastAPI", "Python", "PostgreSQL", "Supabase", "Docker"],
+    },
+    {
+      name: "Gremlin - AI Exploratory QA Agent",
+      description:
+        "AI agent that surfaces 'what if?' risks before code ships. Curated 70+ risk patterns from real production incidents and integrated Claude API for domain-aware analysis across payments, auth, and data edge cases. Designed context-aware prompt engineering for actionable risk identification.",
+      link: "https://github.com/abhi10/gremlin",
+      skills: ["Python", "Claude API", "Prompt Engineering", "CLI"],
     },
     {
       name: "Argus - AI Accessibility Assistant",
@@ -67,33 +68,22 @@ export const siteConfig = {
       ],
     },
     {
-      name: "E-Commerce Test Automation Framework",
+      name: "Compliance Automation Pipeline",
       description:
-        "End-to-end testing framework for Ring.com e-commerce workflows that increased test coverage from 5% to 70%. Built with Playwright and integrated into CI/CD pipelines to ensure reliable Black Friday launches and catch payment/content integration failures before production.",
+        "Distributed web crawling infrastructure (Playwright + AWS ECS Fargate) processing 4,800 pages across 8 locales with event-driven messaging (SNS). Integrated AI-powered anomaly detection cutting manual review from 3 months to 0.5 days.",
       link: "",
-      skills: ["Playwright", "TypeScript", "CI/CD", "AWS", "API Testing"],
-    },
-    {
-      name: "EAA Compliance Scanner",
-      description:
-        "Automated web scanning system built to ensure European Accessibility Act compliance across 4,800 pages in 8 locales. Coordinated with 8 teams to implement scanning, defect tracking, and remediation workflows for Ring Ecommerce properties.",
-      link: "",
-      skills: [
-        "Python",
-        "Selenium",
-        "Accessibility",
-        "Automation",
-        "Compliance",
-      ],
+      skills: ["Playwright", "AWS ECS", "SNS/SQS", "Grafana", "CloudWatch"],
     },
   ],
   experience: [
     {
       company: "Amazon",
-      title: "Senior Automation Engineer",
+      title: "Senior Software Engineer",
       dateRange: "Mar 2021 - Present",
       bullets: [
+        "Architected production RAG pipeline (Python + FastAPI + Pinecone) processing 50k+ customer reviews with LangChain orchestration. Integrated OpenAI and AWS Bedrock with CI/CD deployment, monitoring via CloudWatch for latency/accuracy tracking. Enabled natural language querying surfacing 100+ UX issues, driving 20% support ticket reduction.",
         "Co-led Argus, an AI accessibility assistant utilizing custom prompt engineering on AWS Bedrock; integrated multi-platform (Web/Mobile) testing strategies and streamlined defect identification and resolution",
+        "Designed and deployed generative AI assistant using AWS Bedrock (Claude Sonnet) and Kendra for semantic search across 10k+ WCAG compliance guidelines. Integrated LLM via REST API into partner applications, enabling natural language querying and automated validation workflows. Served 8 engineering teams (40+ users), reducing onboarding from 2 weeks to 1 hour.",
         "Directed an 8-month European Accessibility Act (EAA) compliance program for Ring Ecommerce, coordinating 8 teams to build an automated web scanning system across 4,800 pages in 8 locales",
         "Engineered an automated testing system for e-commerce workflows that increased test coverage from 5% to 70%, supporting reliable Black Friday launches",
         "Managed complete QA lifecycle for Ratings & Reviews launch on 400 Ring.com product pages, achieving zero production defects",

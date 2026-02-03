@@ -35,6 +35,15 @@ export const ideas: Idea[] = [
     },
   },
   {
+    name: "Ideahamster",
+    summary: "Track and share your project ideas publicly",
+    tags: ["Full Stack", "SaaS"],
+    status: "building",
+    links: {
+      website: "https://www.ideahamster.dev/",
+    },
+  },
+  {
     name: "Civic Agents",
     summary:
       "AI agents for civic infrastructure - potholes, disasters, community services",

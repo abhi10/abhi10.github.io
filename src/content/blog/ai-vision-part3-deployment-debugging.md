@@ -312,10 +312,6 @@ The storage factory pattern eliminated 17 lines of duplicated code and prevented
 - [Part 1 - Provider System](/blog/ai-vision-part1-provider-system)
 - [Part 2 - Manual→Automatic](/blog/ai-vision-part2-manual-to-automatic)
 
-**Other Posts:**
-- [Storage Factory Pattern](03-storage-factory-pattern.md) - Detailed implementation
-- [Phase 6 Deployment Retrospective](../../docs/retrospectives/2026-01-12-phase6-deployment-debugging.md) - Full timeline
-
 ---
 
 **Live Demo:** https://chitram.io

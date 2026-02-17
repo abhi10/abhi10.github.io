@@ -48,11 +48,11 @@ export const siteConfig = {
       skills: ["FastAPI", "Python", "PostgreSQL", "Supabase", "Docker"],
     },
     {
-      name: "Gremlin - AI Exploratory QA Agent",
+      name: "Gremlin — AI Risk Critic (CLI · Python Library · Dashboard)",
       description:
-        "AI agent that surfaces 'what if?' risks before code ships. Curated 70+ risk patterns from real production incidents and integrated Claude API for domain-aware analysis across payments, auth, and data edge cases. Designed context-aware prompt engineering for actionable risk identification.",
+        "Pre-ship risk critic that identifies breaking scenarios before code reaches production. 107 domain-specific QA patterns across security, concurrency, payments, and auth. 90.7% tie rate with baseline Claude Sonnet in A/B evals across 54 test cases. Published to PyPI with CLI, programmatic Python API, async support, and interactive Risk Dashboard with heatmap visualizations.",
       link: "https://github.com/abhi10/gremlin",
-      skills: ["Python", "Claude API", "Prompt Engineering", "CLI"],
+      skills: ["Python", "Claude API", "Prompt Engineering", "CLI", "GitHub Actions", "Chart.js"],
     },
     {
       name: "Argus - AI Accessibility Assistant",
